@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-2d commit
-3rd comit
-=======
->>>>>>> parent of 60f402d... 2nd commit
