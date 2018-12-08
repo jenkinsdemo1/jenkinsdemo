@@ -3,7 +3,7 @@
 
 	<property file="./build.properties" />
 	
-	<target name="init" depends="prepare,compile,war,ear" description="Clean work dirs, then compile and create a WAR then create the EAR">
+	<target name="init" depends="prepare,compile,war" description="Clean work dirs, then compile and create a WAR then create the EAR">
 		<echo> Build completed for ${project.name} </echo>
 	</target>
 	
@@ -45,7 +45,6 @@
 		</fileset>
 		<pathelement path="${work.home}"/>
 	</path>
-
 	
 	<target name="war" 
 	          description="Create WAR file for binary distribution">
@@ -54,17 +53,8 @@
 			<classes dir="${work.home}/WEB-INF/classes"/>
 		</war>
 		<copy file="${war.home}/${app.name}.war" todir="${dist.home}" overwrite="true" />
-	</target>
-
-	<target name="ear" >
-		<ear destfile="${dist.home}/${ear.name}" appxml="${app.home}/application.xml" update="true">
-			<fileset dir="${war.home}" includes="*.jar,*.war"/>
-			<metainf dir="${app.home}" excludes="application.xml"/>
-		</ear>
-		
-		<delete file="${dist.home}/${app.name}.war" /> 
-		<delete dir="${war.home}" />
 		<delete dir="${work.home}" />
+		<delete dir="${war.home}" />
 	</target>
 	
 </project>
